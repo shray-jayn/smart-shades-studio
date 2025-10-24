@@ -2,47 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --brand: 220 80% 55%;
-    --accent: 265 85% 62%;
-    --glow: 45 100% 50%;
-    --fg: 0 0% 100%;
-    --muted: 220 10% 60%;
-    --surface: 220 15% 10%;
-    --card: 220 20% 14%;
-    --border: 220 16% 22%;
-    --success: 160 70% 45%;
+    --brand: 280 85% 65%;
+    --brand-light: 280 85% 75%;
+    --brand-dark: 280 85% 55%;
+    --accent: 340 85% 60%;
+    --accent-light: 340 85% 70%;
+    --glow: 50 100% 60%;
+    --fg: 0 0% 98%;
+    --muted: 240 5% 65%;
+    --surface: 240 10% 5%;
+    --card: 240 8% 12%;
+    --card-hover: 240 8% 16%;
+    --border: 240 8% 20%;
+    --success: 160 75% 50%;
     
-    --background: 220 15% 10%;
-    --foreground: 0 0% 100%;
+    --background: 240 10% 5%;
+    --foreground: 0 0% 98%;
     
-    --primary: 220 80% 55%;
+    --primary: 280 85% 65%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 220 20% 14%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 240 8% 12%;
+    --secondary-foreground: 0 0% 98%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
     
-    --muted-foreground: 220 10% 60%;
+    --muted-foreground: 240 5% 65%;
     
     --accent-foreground: 0 0% 100%;
     
-    --popover: 220 20% 14%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 240 8% 12%;
+    --popover-foreground: 0 0% 98%;
     
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 0 0% 98%;
     
-    --input: 220 16% 22%;
-    --ring: 220 80% 55%;
+    --input: 240 8% 20%;
+    --ring: 280 85% 65%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 }
 
@@ -52,65 +52,102 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-surface text-fg font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "cv11", "ss01";
     font-variant-numeric: tabular-nums;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    @apply text-5xl md:text-7xl;
+  }
+  
+  h2 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h3 {
+    @apply text-3xl md:text-4xl;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-card/50 backdrop-blur-xl backdrop-saturate-150;
-    border: 1px solid hsl(var(--border)/0.5);
+    @apply bg-card/60 backdrop-blur-2xl backdrop-saturate-150 border border-border/40;
   }
   
   .glass-heavy {
-    @apply bg-card/70 backdrop-blur-2xl backdrop-saturate-200;
-    border: 1px solid hsl(var(--border)/0.7);
+    @apply bg-card/80 backdrop-blur-3xl backdrop-saturate-200 border border-border/60;
   }
   
-  .glow-ring {
-    box-shadow: 0 0 0 1px hsl(var(--brand)/0.2),
-                0 0 20px hsl(var(--brand)/0.1),
-                0 0 40px hsl(var(--brand)/0.05);
+  .glow-soft {
+    box-shadow: 0 8px 32px -8px hsl(var(--brand)/0.3),
+                0 0 0 1px hsl(var(--border));
   }
   
-  .glow-ring-hover:hover {
-    box-shadow: 0 0 0 1px hsl(var(--brand)/0.4),
-                0 0 30px hsl(var(--brand)/0.2),
-                0 0 60px hsl(var(--brand)/0.1);
+  .glow-strong {
+    box-shadow: 0 0 60px hsl(var(--brand)/0.4),
+                0 0 100px hsl(var(--accent)/0.2),
+                0 0 0 1px hsl(var(--brand)/0.5);
   }
   
-  .gradient-hero {
-    background: radial-gradient(1200px 600px at 20% 10%, hsl(var(--brand)/0.35), transparent),
-                linear-gradient(135deg, hsl(var(--surface)), hsl(240 16% 8%));
+  .gradient-mesh {
+    background: 
+      radial-gradient(at 0% 0%, hsl(var(--brand)/0.2) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsl(var(--accent)/0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(var(--glow)/0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsl(var(--brand-dark)/0.2) 0px, transparent 50%),
+      hsl(var(--background));
   }
   
-  .gradient-cta {
-    background: conic-gradient(from 180deg at 50% 50%, 
-                               hsl(var(--brand)), 
-                               hsl(var(--accent)), 
-                               hsl(var(--glow)),
-                               hsl(var(--brand)));
+  .gradient-vibrant {
+    background: linear-gradient(135deg, 
+      hsl(var(--brand)) 0%, 
+      hsl(var(--accent)) 50%, 
+      hsl(var(--brand-dark)) 100%);
   }
   
-  .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--accent)));
+  .gradient-text {
+    background: linear-gradient(135deg, 
+      hsl(var(--brand-light)), 
+      hsl(var(--accent-light)), 
+      hsl(var(--glow)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
-  .magnetic {
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  .magnetic:hover {
-    transform: translateY(-2px);
+  .hover-lift:hover {
+    transform: translateY(-8px);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 40px hsl(var(--brand)/0.5),
+                0 0 80px hsl(var(--accent)/0.3);
+  }
+  
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--brand)/0.1),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
 }

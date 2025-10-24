@@ -18,11 +18,17 @@ export default {
         display: ['Inter Tight', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        brand: "hsl(var(--brand))",
-        accent: "hsl(var(--accent))",
+        brand: {
+          DEFAULT: "hsl(var(--brand))",
+          light: "hsl(var(--brand-light))",
+          dark: "hsl(var(--brand-dark))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          light: "hsl(var(--accent-light))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
         glow: "hsl(var(--glow))",
-        fg: "hsl(var(--fg))",
-        surface: "hsl(var(--surface))",
         success: "hsl(var(--success))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
