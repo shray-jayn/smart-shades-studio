@@ -91,30 +91,103 @@ const Index = () => {
       <BrandMarquee />
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-card relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand/10 rounded-full blur-3xl" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Why Motorized Blinds & More?
+                Why Choose MB&M?
               </h2>
               <p className="text-lg text-muted max-w-2xl mx-auto">
-                Premium quality, expert installation, and unmatched customer service
+                California expertise, premium quality, and unmatched service
               </p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Shield, title: "10% Price Match", description: "Best prices guaranteed on comparable systems" },
-              { icon: Zap, title: "Quick Installation", description: "Professional setup in 1-3 days per project" },
-              { icon: Home, title: "Smart Integration", description: "Works with Alexa, Google, Apple HomeKit" },
-              { icon: Award, title: "5-Year Warranty", description: "Comprehensive coverage on motors & parts" },
+              { 
+                icon: Home, 
+                title: "SoCal & Vegas Focused", 
+                description: "Serving LA, OC, SD, Coachella Valley & Las Vegas with local expertise" 
+              },
+              { 
+                icon: Shield, 
+                title: "Premium Motors", 
+                description: "Somfy & Lutron motors for whisper-quiet, reliable operation" 
+              },
+              { 
+                icon: Zap, 
+                title: "Fast Turnaround", 
+                description: "Quick manufacturing & installation—typically 2-4 weeks" 
+              },
+              { 
+                icon: Award, 
+                title: "Price-Match Pledge", 
+                description: "We'll beat any competitor's quote by 10%—guaranteed" 
+              },
             ].map((feature, index) => (
               <ScrollReveal key={index} delay={index * 0.15}>
-                <div className="glass rounded-2xl p-6 hover:glass-heavy transition-all magnetic">
+                <motion.div 
+                  whileHover={{ y: -8 }}
+                  className="glass rounded-2xl p-6 hover:glass-heavy transition-all hover:glow-soft"
+                >
                   <feature.icon className="h-12 w-12 text-brand mb-4" />
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted">{feature.description}</p>
+                  <p className="text-muted leading-relaxed">{feature.description}</p>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Process */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Process</h2>
+              <p className="text-lg text-muted max-w-2xl mx-auto">
+                From initial consultation to ongoing support, we're with you every step
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            {[
+              { 
+                number: "1", 
+                title: "Measure", 
+                description: "Precision in-home measurement and consultation" 
+              },
+              { 
+                number: "2", 
+                title: "Manufacture", 
+                description: "Custom production to your exact specifications" 
+              },
+              { 
+                number: "3", 
+                title: "Install", 
+                description: "Expert installation by certified technicians" 
+              },
+              { 
+                number: "4", 
+                title: "Configure", 
+                description: "Smart home setup and programming" 
+              },
+              { 
+                number: "5", 
+                title: "Support", 
+                description: "Ongoing local service and assistance" 
+              },
+            ].map((step, index) => (
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <div className="glass rounded-2xl p-6 hover:glass-heavy transition-all text-center group">
+                  <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    {step.number}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{step.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -122,37 +195,55 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
-              <p className="text-lg text-muted max-w-2xl mx-auto">
-                From consultation to installation, we make the process seamless
-              </p>
-            </div>
-          </ScrollReveal>
-          <Steps />
-        </div>
-      </section>
-
-      {/* Reviews */}
+      {/* Testimonials */}
       <section className="py-20 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Customers Say</h2>
-              <p className="text-lg text-muted">Trusted by thousands across LA, OC, SD & Las Vegas</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by SoCal & Vegas Homeowners</h2>
+              <p className="text-lg text-muted">Real experiences from customers across our service areas</p>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "Sarah M.", city: "Beverly Hills", rating: 5, review: "The installation was flawless and the smart home integration works perfectly. Love controlling everything with my voice!" },
-              { name: "Michael R.", city: "Irvine", rating: 5, review: "Professional team, beautiful results. The motorized exterior blinds on our patio have been a game-changer." },
-              { name: "Jennifer L.", city: "Las Vegas", rating: 5, review: "From quote to install, everything was smooth. The automated schedules help keep our home cool and save energy." },
+              { 
+                name: "Sarah M.", 
+                city: "West Hollywood, CA", 
+                rating: 5, 
+                review: "The zip-track blinds transformed our patio into a year-round space. Installation was flawless and the smart home integration works perfectly." 
+              },
+              { 
+                name: "David K.", 
+                city: "Newport Beach, CA", 
+                rating: 5, 
+                review: "MB&M handled our whole-home motorization project with incredible professionalism. The shades are beautiful and the Alexa integration is seamless." 
+              },
+              { 
+                name: "Jennifer L.", 
+                city: "Las Vegas, NV", 
+                rating: 5, 
+                review: "Finally, outdoor blinds that can handle Vegas winds! The automatic sensors give us peace of mind, and the quality is outstanding." 
+              },
+              { 
+                name: "Michael T.", 
+                city: "San Diego, CA", 
+                rating: 5, 
+                review: "We love our honeycomb shades! They've noticeably reduced our energy bills and the motorization makes them so convenient. Great investment." 
+              },
+              { 
+                name: "Amanda R.", 
+                city: "Pasadena, CA", 
+                rating: 5, 
+                review: "The team was professional from start to finish. Our dual shades look stunning and the light control is exactly what we needed for our home office." 
+              },
+              { 
+                name: "Robert & Lisa C.", 
+                city: "Palm Desert, CA", 
+                rating: 5, 
+                review: "Being able to control all our shades from our phone while we're away is fantastic. The local service and warranty support give us confidence." 
+              },
             ].map((review, index) => (
-              <ScrollReveal key={index} delay={index * 0.15}>
+              <ScrollReveal key={index} delay={index * 0.1}>
                 <ReviewCard {...review} />
               </ScrollReveal>
             ))}
