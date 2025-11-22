@@ -87,6 +87,7 @@ const Navbar = () => {
               >
                 <Phone className="h-4 w-4" />
                 <span>(310) 498-0110</span>
+                
               </a>
               <Button
                 size="sm"
