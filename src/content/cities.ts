@@ -9,7 +9,7 @@ export const regions: Region[] = [
     name: "Los Angeles County",
     slug: "los-angeles-county",
     cities: [
-      "Los Angeles", "Santa Monica", "West Hollywood", "Pasadena", 
+      "Los Angeles", "Santa Monica","Hollywood", "West Hollywood", "Pasadena", 
       "Burbank", "Glendale", "Sherman Oaks", "Studio City", 
       "Manhattan Beach", "Torrance"
     ]
@@ -74,7 +74,7 @@ export function getCityInfo(cityName: string): CityInfo | null {
       climate: "Mediterranean climate with intense UV exposure and mild winters"
     },
     "orange-county": {
-      phone: "(714) 555-0100",
+      phone: "(657) 895-5989", 
       address: "Anaheim, CA",
       climate: "Coastal to inland warmth with high UV and occasional Santa Ana winds"
     },

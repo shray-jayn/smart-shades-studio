@@ -271,7 +271,7 @@ const Index = () => {
               Request a Free In-Home Consultation
             </h2>
             <p className="text-lg text-muted mb-8">
-              Get expert advice, accurate measurements, and a detailed quote—all at no cost
+              Get expert advice, accurate measurements, and a detailed quote all at no cost
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>

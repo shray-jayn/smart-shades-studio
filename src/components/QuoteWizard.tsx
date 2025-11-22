@@ -1,10 +1,18 @@
+// src/components/QuoteWizard.tsx
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Check, ArrowRight, ArrowLeft } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Check, ArrowRight, ArrowLeft, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 
@@ -30,7 +38,8 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
     e.preventDefault();
     toast({
       title: "Quote Request Submitted!",
-      description: "We'll contact you within 24 hours to schedule your free consultation.",
+      description:
+        "We'll contact you within 24 hours to schedule your free consultation.",
     });
     onOpenChange(false);
     setStep(1);
@@ -45,8 +54,8 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
     });
   };
 
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
+  const nextStep = () => setStep((s) => s + 1);
+  const prevStep = () => setStep((s) => s - 1);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -85,7 +94,9 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                   <Input
                     id="name"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     required
                     className="mt-1"
                   />
@@ -96,7 +107,9 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                     id="phone"
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                     required
                     className="mt-1"
                   />
@@ -107,12 +120,18 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     required
                     className="mt-1"
                   />
                 </div>
-                <Button type="button" onClick={nextStep} className="w-full mt-4">
+                <Button
+                  type="button"
+                  onClick={nextStep}
+                  className="w-full mt-4"
+                >
                   Continue <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </motion.div>
@@ -131,7 +150,9 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                   <Input
                     id="city"
                     value={formData.city}
-                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, city: e.target.value })
+                    }
                     required
                     className="mt-1"
                   />
@@ -141,7 +162,9 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                   <Input
                     id="timeline"
                     value={formData.timeline}
-                    onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, timeline: e.target.value })
+                    }
                     placeholder="e.g., Within 2 weeks, 1-3 months"
                     className="mt-1"
                   />
@@ -151,13 +174,23 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                   <Input
                     id="productInterest"
                     value={formData.productInterest}
-                    onChange={(e) => setFormData({ ...formData, productInterest: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        productInterest: e.target.value,
+                      })
+                    }
                     placeholder="e.g., Motorized Roller Shades, Patio Blinds"
                     className="mt-1"
                   />
                 </div>
                 <div className="flex gap-2 mt-4">
-                  <Button type="button" onClick={prevStep} variant="outline" className="flex-1">
+                  <Button
+                    type="button"
+                    onClick={prevStep}
+                    variant="outline"
+                    className="flex-1"
+                  >
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back
                   </Button>
                   <Button type="button" onClick={nextStep} className="flex-1">
@@ -180,7 +213,9 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                   <Textarea
                     id="message"
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     placeholder="Tell us about your windows, rooms, or any specific requirements..."
                     className="mt-1 min-h-[120px]"
                   />
@@ -203,7 +238,12 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
                   </ul>
                 </div>
                 <div className="flex gap-2 mt-4">
-                  <Button type="button" onClick={prevStep} variant="outline" className="flex-1">
+                  <Button
+                    type="button"
+                    onClick={prevStep}
+                    variant="outline"
+                    className="flex-1"
+                  >
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back
                   </Button>
                   <Button type="submit" className="flex-1">
@@ -214,6 +254,38 @@ const QuoteWizard = ({ open, onOpenChange }: QuoteWizardProps) => {
             )}
           </AnimatePresence>
         </form>
+
+        {/* Contact info always visible in the wizard */}
+        <div className="mt-6 text-xs sm:text-sm text-muted-foreground space-y-1 border-t border-border pt-4">
+          <p className="font-medium mb-1">Prefer to talk right now?</p>
+          <div className="flex items-center gap-2">
+            <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span>
+              <strong>Los Angeles:</strong>{" "}
+              <a href="tel:+13104980110" className="hover:text-brand">
+                (310) 498-0110
+              </a>
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span>
+              <strong>Las Vegas:</strong>{" "}
+              <a href="tel:+17253167780" className="hover:text-brand">
+                (725) 316-7780
+              </a>
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span>
+              <strong>Orange County:</strong>{" "}
+              <a href="tel:+16578955989" className="hover:text-brand">
+                (657) 895-5989
+              </a>
+            </span>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

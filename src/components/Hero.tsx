@@ -1,6 +1,9 @@
+// src/components/Hero.tsx
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { ArrowRight, Phone } from "lucide-react";
+import QuoteWizard from "@/components/QuoteWizard";
 
 interface HeroProps {
   title: string;
@@ -9,13 +12,19 @@ interface HeroProps {
   backgroundImage?: string;
 }
 
-const Hero = ({ title, subtitle, showCTA = true, backgroundImage }: HeroProps) => {
+const Hero = ({
+  title,
+  subtitle,
+  showCTA = true,
+  backgroundImage,
+}: HeroProps) => {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 gradient-mesh" />
-      
-      {/* Background Image with Overlay */}
+
       {backgroundImage && (
         <>
           <div
@@ -26,29 +35,15 @@ const Hero = ({ title, subtitle, showCTA = true, backgroundImage }: HeroProps) =
         </>
       )}
 
-      {/* Animated Gradient Orbs */}
+      {/* Orbs */}
       <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand/30 rounded-full blur-3xl"
       />
       <motion.div
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
       />
 
@@ -80,13 +75,24 @@ const Hero = ({ title, subtitle, showCTA = true, backgroundImage }: HeroProps) =
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button size="lg" className="gradient-vibrant hover:opacity-90 transition-opacity text-lg px-8 py-6 hover-lift group">
+            <Button
+              size="lg"
+              className="gradient-vibrant hover:opacity-90 transition-opacity text-lg px-8 py-6 hover-lift group"
+              onClick={() => setQuoteOpen(true)}
+            >
               Get Free Quote
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button size="lg" variant="outline" className="glass hover:glass-heavy text-lg px-8 py-6 border-brand/50 hover:border-brand transition-all">
-              <Phone className="mr-2 h-5 w-5" />
-              (310) 498-0110
+            <Button
+              size="lg"
+              variant="outline"
+              className="glass hover:glass-heavy text-lg px-8 py-6 border-brand/50 hover:border-brand transition-all"
+              asChild
+            >
+              <a href="tel:+13104980110">
+                <Phone className="mr-2 h-5 w-5" />
+                (310) 498-0110
+              </a>
             </Button>
           </motion.div>
         )}
@@ -111,8 +117,10 @@ const Hero = ({ title, subtitle, showCTA = true, backgroundImage }: HeroProps) =
         </motion.div>
       </div>
 
-      {/* Bottom Fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+
+      {/* Hero-triggered wizard */}
+      <QuoteWizard open={quoteOpen} onOpenChange={setQuoteOpen} />
     </section>
   );
 };
